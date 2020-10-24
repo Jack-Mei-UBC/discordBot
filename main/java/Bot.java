@@ -6,14 +6,16 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+
+
 
 public class Bot extends ListenerAdapter
 {
-    public ArrayList<String> banList = new ArrayList<>();
-    public static void main(String[] args) throws LoginException
-    {
+    public static String fileName = "data.txt";
+    public static ArrayList<String> banList;
+    public static void main(String[] args) throws LoginException{
         if (args.length < 1) {
             System.out.println("You have to provide a token as first argument!");
             System.exit(1);
@@ -21,12 +23,39 @@ public class Bot extends ListenerAdapter
         // args[0] should be the token
         // We only need 2 intents in this bot. We only respond to messages in guilds and private channels.
         // All other events will be disabled.
+        reload();
         JDABuilder.createLight(args[0], GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
                 .addEventListeners(new Bot())
-                .setActivity(Activity.playing("All my homies hate gaevon"))
+//                .setActivity(Activity.playing("All my homies hate gaevon"))
                 .build();
-    }
 
+
+
+
+    }
+    public static void reload() {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+            banList = (ArrayList<String>) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            banList = new ArrayList<String>();
+        }
+    }
+    public static void end() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+            out.writeObject(banList);
+            out.close();
+            for (String s : banList)
+                System.out.println(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.exit(0);
+        }
+    }
     @Override
     public void onMessageReceived(MessageReceivedEvent event)
     {
@@ -35,9 +64,12 @@ public class Bot extends ListenerAdapter
         Member member = event.getMember();
         mute(msg, user, member, event);
         runServer(msg, user, member, event);
+        checkEnd(msg, user, member, event);
     }
-    public void test(){
-
+    public void checkEnd(Message msg, User user, Member member, MessageReceivedEvent event){
+        String input = msg.getContentRaw();
+        if (input.equals("!exit") || input.equals("!quit"))
+            end();
     }
     public void runServer(Message msg, User user, Member member, MessageReceivedEvent event) {
         //RUNS THE MC SERVER
@@ -64,9 +96,12 @@ public class Bot extends ListenerAdapter
         } else if (msg.getContentRaw().startsWith("!mute")) {
             if (user.getAsTag().equals("Nice#6029")) {
                 String mess = msg.getContentRaw();
-                String banned_user = mess.substring(6);
-                banList.add(banned_user);
-                System.out.println("banned " + banned_user);
+                String banned_user = mess.substring(5).trim();
+                if (!banList.contains(banned_user))
+                    banList.add(banned_user);
+                else
+                    System.out.println("Already muted user");
+                System.out.println("muted " + banned_user);
             }
             else {
                 System.out.println(user.getAsTag());
@@ -77,16 +112,16 @@ public class Bot extends ListenerAdapter
         } else if (msg.getContentRaw().startsWith("!unmute")) {
             if (user.getAsTag().equals("Nice#6029")) {
                 String mess = msg.getContentRaw();
-                String banned_user = mess.substring(8);
+                String banned_user = mess.substring(6).trim();
                 if (banList.contains(banned_user))
                     banList.remove(banList.indexOf(banned_user));
-                System.out.println("unbanned " + banned_user);
+                System.out.println("unmuted " + banned_user);
             }
         }
         for (String s :banList) {
             if (s.contains(member.getId())) {
                 event.getMessage().delete().queue();
-                System.out.println("Removed message from : "+ user.getAsTag() + " " + event.getMessage().getContentRaw());
+                System.out.println("Removed message from : "+ user.getAsTag() + " " + event.getMessage().getContentDisplay());
             }
         }
     }
