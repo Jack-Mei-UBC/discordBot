@@ -36,7 +36,9 @@ public class Bot extends ListenerAdapter
         mute(msg, user, member, event);
         runServer(msg, user, member, event);
     }
+    public void test(){
 
+    }
     public void runServer(Message msg, User user, Member member, MessageReceivedEvent event) {
         //RUNS THE MC SERVER
         if (event.getChannel().getName().equals("mc-server") &&
