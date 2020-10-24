@@ -1,0 +1,46 @@
+[16:34:54] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[16:34:54] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[16:34:54] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[16:34:54] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[16:34:54] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[16:34:54] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[16:34:54] [Server thread/INFO]: Loading properties
+[16:34:54] [Server thread/INFO]: Default game type: SURVIVAL
+[16:34:54] [Server thread/INFO]: Generating keypair
+[16:34:55] [Server thread/INFO]: Starting Minecraft server on *:25565
+[16:34:55] [Server thread/INFO]: Using default channel type
+[16:36:21] [Server-Worker-4/INFO]: Preparing spawn area: 0%
+[16:36:21] [Server-Worker-5/INFO]: Preparing spawn area: 0%
+[16:36:21] [Server-Worker-6/INFO]: Preparing spawn area: 0%
+[16:36:22] [Server-Worker-5/INFO]: Preparing spawn area: 0%
+[16:36:22] [Server-Worker-5/INFO]: Preparing spawn area: 2%
+[16:36:23] [Server-Worker-6/INFO]: Preparing spawn area: 2%
+[16:36:23] [Server-Worker-6/INFO]: Preparing spawn area: 4%
+[16:36:24] [Server-Worker-5/INFO]: Preparing spawn area: 7%
+[16:36:24] [Server-Worker-4/INFO]: Preparing spawn area: 7%
+[16:36:25] [Server-Worker-4/INFO]: Preparing spawn area: 7%
+[16:36:26] [Server-Worker-4/INFO]: Preparing spawn area: 7%
+[16:36:26] [Server-Worker-4/INFO]: Preparing spawn area: 15%
+[16:36:26] [Server-Worker-5/INFO]: Preparing spawn area: 15%
+[16:36:27] [Server-Worker-4/INFO]: Preparing spawn area: 24%
+[16:36:27] [Server-Worker-5/INFO]: Preparing spawn area: 24%
+[16:36:28] [Server-Worker-6/INFO]: Preparing spawn area: 33%
+[16:36:28] [Server-Worker-6/INFO]: Preparing spawn area: 33%
+[16:36:29] [Server-Worker-4/INFO]: Preparing spawn area: 42%
+[16:36:30] [Server-Worker-4/INFO]: Preparing spawn area: 42%
+[16:36:30] [Server-Worker-4/INFO]: Preparing spawn area: 47%
+[16:36:30] [Server-Worker-4/INFO]: Preparing spawn area: 52%
+[16:36:31] [Server-Worker-6/INFO]: Preparing spawn area: 52%
+[16:36:32] [Server-Worker-6/INFO]: Preparing spawn area: 64%
+[16:36:32] [Server-Worker-6/INFO]: Preparing spawn area: 72%
+[16:36:33] [Server-Worker-5/INFO]: Preparing spawn area: 79%
+[16:36:33] [Server-Worker-6/INFO]: Preparing spawn area: 79%
+[16:36:33] [Server-Worker-4/INFO]: Preparing spawn area: 90%
+[16:36:34] [Server-Worker-4/INFO]: Preparing spawn area: 97%
+[16:36:34] [Server thread/INFO]: Time elapsed: 13533 ms
+[16:36:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[16:36:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[16:36:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[16:36:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[16:36:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[16:36:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
