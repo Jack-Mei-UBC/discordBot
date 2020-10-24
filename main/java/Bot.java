@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.requests.RestAction;
 
 import javax.security.auth.login.LoginException;
 import java.io.*;
@@ -28,11 +29,13 @@ public class Bot extends ListenerAdapter
                 .addEventListeners(new Bot())
 //                .setActivity(Activity.playing("All my homies hate gaevon"))
                 .build();
-
-
-
+    }
+    public static void dm() {
+        User owner = User.fromId("219905033876013058");
+        RestAction<PrivateChannel> channel = owner.openPrivateChannel();
 
     }
+    // reloads all the data needed from the save
     public static void reload() {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
@@ -43,6 +46,7 @@ public class Bot extends ListenerAdapter
             banList = new ArrayList<String>();
         }
     }
+    // saves all the data we need before closing the bot
     public static void end() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
@@ -62,14 +66,17 @@ public class Bot extends ListenerAdapter
         Message msg = event.getMessage();
         User user = event.getAuthor();
         Member member = event.getMember();
+
         mute(msg, user, member, event);
         runServer(msg, user, member, event);
         checkEnd(msg, user, member, event);
     }
+    // Checks if I end the program
     public void checkEnd(Message msg, User user, Member member, MessageReceivedEvent event){
         String input = msg.getContentRaw();
-        if (input.equals("!exit") || input.equals("!quit"))
-            end();
+        if (user.getId().equals("219905033876013058"))
+            if (input.equals("!exit") || input.equals("!quit") )
+                end();
     }
     public void runServer(Message msg, User user, Member member, MessageReceivedEvent event) {
         //RUNS THE MC SERVER
@@ -83,7 +90,6 @@ public class Bot extends ListenerAdapter
             }
         }
     }
-
     public void mute(Message msg, User user, Member member, MessageReceivedEvent event) {
         if (msg.getContentRaw().equals("!ping")) {
             System.out.println("pinged");
@@ -94,7 +100,7 @@ public class Bot extends ListenerAdapter
                         response.editMessageFormat("Pong: %d ms", System.currentTimeMillis() - time).queue();
                     });
         } else if (msg.getContentRaw().startsWith("!mute")) {
-            if (user.getAsTag().equals("Nice#6029")) {
+            if (user.getId().equals("219905033876013058")) {
                 String mess = msg.getContentRaw();
                 String banned_user = mess.substring(5).trim();
                 if (!banList.contains(banned_user))
@@ -110,9 +116,9 @@ public class Bot extends ListenerAdapter
                 System.out.println(member.getId());
             }
         } else if (msg.getContentRaw().startsWith("!unmute")) {
-            if (user.getAsTag().equals("Nice#6029")) {
+            if (user.getId().equals("219905033876013058")) {
                 String mess = msg.getContentRaw();
-                String banned_user = mess.substring(6).trim();
+                String banned_user = mess.substring(7).trim();
                 if (banList.contains(banned_user))
                     banList.remove(banList.indexOf(banned_user));
                 System.out.println("unmuted " + banned_user);
